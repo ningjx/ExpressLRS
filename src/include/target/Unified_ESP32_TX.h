@@ -143,6 +143,8 @@
 #define OPT_USE_OLED_SPI (hardware_int(HARDWARE_screen_type)==2)
 #define USE_OLED_SPI_SMALL
 #define OPT_USE_OLED_SPI_SMALL (hardware_int(HARDWARE_screen_type)==3)
+#define USE_OLED_SPI_Transport
+#define OPT_USE_OLED_SPI_Transport (hardware_int(HARDWARE_screen_type)==7)
 #define OLED_REVERSED
 #define OPT_OLED_REVERSED hardware_flag(HARDWARE_screen_reversed)
 

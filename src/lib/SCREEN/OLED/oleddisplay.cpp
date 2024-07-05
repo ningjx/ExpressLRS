@@ -80,6 +80,8 @@ void OLEDDisplay::init()
         u8g2 = new U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI(OPT_OLED_REVERSED ? U8G2_R2 : U8G2_R0, GPIO_PIN_OLED_SCK, GPIO_PIN_OLED_MOSI, GPIO_PIN_OLED_CS, GPIO_PIN_OLED_DC, GPIO_PIN_OLED_RST);
     else if (OPT_USE_OLED_I2C)
         u8g2 = new U8G2_SSD1306_128X64_NONAME_F_HW_I2C(OPT_OLED_REVERSED ? U8G2_R2 : U8G2_R0, GPIO_PIN_OLED_RST, GPIO_PIN_OLED_SCK, GPIO_PIN_OLED_SDA);
+    else if (OPT_USE_OLED_SPI_Transport)
+        u8g2 = new U8G2_SSD1309_128X64_NONAME0_F_4W_SW_SPI(OPT_OLED_REVERSED ? U8G2_R2 : U8G2_R0, GPIO_PIN_OLED_SCK, GPIO_PIN_OLED_MOSI, GPIO_PIN_OLED_CS, GPIO_PIN_OLED_DC, GPIO_PIN_OLED_RST);
 
     u8g2->begin();
     u8g2->clearBuffer();
@@ -125,8 +127,23 @@ void OLEDDisplay::displaySplashScreen()
             u8g2->drawXBM(0, 0, 128, 32, image);
         }
     }
-    else
+    //else
 #endif
+    else if(OPT_USE_OLED_SPI_Transport)
+    {
+        auto constexpr sz = 128 * 56 / 8;
+        uint8_t image[sz];
+        if (spi_flash_read(logo_image, image, sz) == ESP_OK)
+        {
+            u8g2->drawXBM(0, 0, 128, 56, image);
+        }
+
+        char buffer[50];
+        snprintf(buffer, sizeof(buffer), "ELRS-%.6s", version);
+        u8g2->setFont(u8g2_font_profont10_mr);
+        drawCentered(60, buffer);
+    }
+    else
     {
         auto constexpr sz = 128 * 64 / 8;
         uint8_t image[sz];

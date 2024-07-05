@@ -24,14 +24,14 @@
 #-DRegulatory_Domain_EU_433
 #-DRegulatory_Domain_US_433
 #-DRegulatory_Domain_US_433_WIDE
-#-DRegulatory_Domain_FCC_915
+-DRegulatory_Domain_FCC_915
 #-DRegulatory_Domain_ISM_2400
 #-DRegulatory_Domain_EU_CE_2400
 
 ### PERFORMANCE OPTIONS: ###
 
 #unlocks >250mw output power for R9M and Happy Model ES915TX (Fan mod suggested: https://github.com/AlessandroAU/ExpressLRS/wiki/R9M-Fan-Mod-Cover)
-#-DUNLOCK_HIGHER_POWER
+-DUNLOCK_HIGHER_POWER
 
 -DLOCK_ON_FIRST_CONNECTION
 
@@ -39,7 +39,7 @@
 # dropped below the configured Fan Threshold. This prevents the fan from turning on and off every
 # few seconds if the power level is constantly changing.
 # Default is 30 seconds if not defined, value can be 0-254.
-#-DFAN_MIN_RUNTIME=30
+-DFAN_MIN_RUNTIME=30
 
 ### COMPATIBILITY OPTIONS: ###
 
@@ -54,7 +54,7 @@
 # not work, only via_Wifi. ESP8266/8285 targets only
 #-DRCVR_INVERT_TX
 
-#-DTLM_REPORT_INTERVAL_MS=240LU
+-DTLM_REPORT_INTERVAL_MS=240LU
 
 ### OTHER OPTIONS: ###
 
@@ -77,7 +77,7 @@
 #-DMY_STARTUP_MELODY="B5 16 P16 B5 16 P16 B5 16 P16 B5 2 G5 2 A5 2 B5 8 P4 A5 8 B5 1|140|-3"
 
 #If commented out the LED is RGB otherwise GRB
-#-DWS2812_IS_GRB
+-DWS2812_IS_GRB
 
 ### Debugging options ###
 
